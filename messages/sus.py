@@ -1,6 +1,5 @@
 from telegram import Update
 from telegram.ext import CallbackContext, MessageHandler, Filters
-from itertools import groupby
 from utils.utils import sus_in_string
 
 def sus(update: Update, context: CallbackContext):
