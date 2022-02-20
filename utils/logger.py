@@ -22,13 +22,13 @@ class CustomFormatter(logging.Formatter):
             logging.CRITICAL: self.bold_red + self.fmt + self.reset,
         }
 
-    def format(self, record: logging.LogRecord):
+    def format(self, record: logging.LogRecord) -> str:
         log_fmt = self.FORMATS.get(record.levelno)
         formatter = logging.Formatter(log_fmt)
         return formatter.format(record)
 
 
-def get_logger(name: str = "Guten Abend"):
+def get_logger(name: str = "Guten Abend") -> logging.Logger:
     fmt = "%(asctime)s | %(levelname)8s | %(message)s"
     logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)
