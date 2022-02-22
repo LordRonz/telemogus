@@ -6,6 +6,7 @@ from commands.handler import command_handler
 from messages.handler import message_handler
 from utils.error_handler import error_handler
 
+
 def main():
     read_env()
 
@@ -17,6 +18,7 @@ def main():
     dispatcher.add_error_handler(error_handler)
     logger.info("Hello World!")
     updater.start_polling()
+
 
 if __name__ == "__main__":
     main()
