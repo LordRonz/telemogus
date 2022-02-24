@@ -10,9 +10,13 @@ def rps(update: Update, context: CallbackContext):
         or update.effective_message is None
     ):
         return
-    # if update.effective_chat.type not in ('group', 'supergroup'):
-    #     context.bot.send_message(chat_id=update.effective_chat.id, text=f"This command must be used in group or supergroup, now I'm in {update.effective_chat.type} chat")
-    #     return
+
+    if update.effective_chat.type not in ("group", "supergroup"):
+        context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text=f"This command must be used in group or supergroup, now I'm in {update.effective_chat.type} chat",
+        )
+        return
 
     keyboard = [
         [
@@ -33,10 +37,12 @@ def rps(update: Update, context: CallbackContext):
     context.chat_data[f"{sent_msg.message_id}"] = {
         "p1": {
             "id": update.effective_user.id,
+            "name": update.effective_user.full_name,
             "choice": None,
         },
         "p2": {
             "id": None,
+            "name": None,
             "choice": None,
         },
     }
