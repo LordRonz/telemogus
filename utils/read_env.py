@@ -1,7 +1,7 @@
 import os, re
 
 
-def read_env():
+def read_env() -> None:
     """Pulled from Honcho code with minor updates, reads local default
     environment variables from a .env file located in the project root
     directory.
