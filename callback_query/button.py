@@ -56,6 +56,7 @@ def button(update: Update, context: CallbackContext) -> None:
 
     if rps_data["p1"]["id"] is not None and rps_data["p2"]["id"] is not None:
         winner = get_rps_winner(rps_data=rps_data)
+        context.chat_data.pop(f"{query.message.message_id}", None)
         context.bot.send_message(
             chat_id=update.effective_chat.id,
             text=f"The winner is{rps_data[winner]['name']}",
