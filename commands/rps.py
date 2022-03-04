@@ -11,12 +11,12 @@ def rps(update: Update, context: CallbackContext):
     ):
         return
 
-    # if update.effective_chat.type not in ("group", "supergroup"):
-    #     context.bot.send_message(
-    #         chat_id=update.effective_chat.id,
-    #         text=f"This command must be used in group or supergroup, now I'm in {update.effective_chat.type} chat",
-    #     )
-    #     return
+    if update.effective_chat.type not in ("group", "supergroup"):
+        context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text=f"This command must be used in group or supergroup, now I'm in {update.effective_chat.type} chat",
+        )
+        return
 
     keyboard = [
         [
