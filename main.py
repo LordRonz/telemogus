@@ -19,7 +19,13 @@ def main():
     message_handler(dispatcher)
     dispatcher.add_error_handler(error_handler)
     logger.info("Hello World!")
-    updater.start_polling()
+    updater.start_webhook(
+        listen="0.0.0.0",
+        port=443,
+        url_path=TOKEN,
+        webhook_url=f"https://telemogus.herokuapp.com/{TOKEN}",
+    )
+    updater.idle()
 
 
 if __name__ == "__main__":
