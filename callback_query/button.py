@@ -1,6 +1,6 @@
 from typing import Any
 from telegram.ext import CallbackQueryHandler, CallbackContext
-from telegram import Update
+from telegram import Update, ParseMode
 
 from commands.rps import rps
 
@@ -58,12 +58,13 @@ def button(update: Update, context: CallbackContext) -> None:
             text=f"{query.from_user.full_name} has chosen!",
         )
 
-    if rps_data["p1"]["choice"] is not None and rps_data["p2"]["id"] is not None:
+    if rps_data["p1"]["choice"] is not None and rps_data["p2"]["choice"] is not None:
         winner = get_rps_winner(rps_data=rps_data)
         context.chat_data.pop(f"{query.message.message_id}", None)
         context.bot.send_message(
             chat_id=update.effective_chat.id,
-            text=f"The winner is {rps_data[winner]['name']}",
+            text=f"*Rock Paper Scissor*\n*{rps_data['p1']['name']}*:{rps_data['p1']['choice']}\n*{rps_data['p2']['name']}*:{rps_data['p2']['choice']}\nThe winner is {rps_data[winner]['name']}",
+            parse_mode=ParseMode.MARKDOWN_V2,
         )
 
         query.edit_message_text(

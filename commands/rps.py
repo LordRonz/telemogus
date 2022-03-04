@@ -1,4 +1,4 @@
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ParseMode
 from telegram.ext import CallbackContext, CommandHandler
 
 
@@ -11,12 +11,12 @@ def rps(update: Update, context: CallbackContext):
     ):
         return
 
-    if update.effective_chat.type not in ("group", "supergroup"):
-        context.bot.send_message(
-            chat_id=update.effective_chat.id,
-            text=f"This command must be used in group or supergroup, now I'm in {update.effective_chat.type} chat",
-        )
-        return
+    # if update.effective_chat.type not in ("group", "supergroup"):
+    #     context.bot.send_message(
+    #         chat_id=update.effective_chat.id,
+    #         text=f"This command must be used in group or supergroup, now I'm in {update.effective_chat.type} chat",
+    #     )
+    #     return
 
     keyboard = [
         [
@@ -30,8 +30,9 @@ def rps(update: Update, context: CallbackContext):
 
     sent_msg = context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text=f"{update.effective_user.first_name} has started a rock, paper, and scissor game! To participate, just press these buttons",
+        text=f"*Rock Paper Scissor*\n{update.effective_user.first_name} has started a rock, paper, and scissor game\! To participate, just press these buttons",
         reply_markup=reply_markup,
+        parse_mode=ParseMode.MARKDOWN_V2,
     )
 
     context.chat_data[f"{sent_msg.message_id}"] = {
