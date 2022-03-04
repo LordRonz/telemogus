@@ -12,6 +12,7 @@ def main():
     read_env()
 
     TOKEN = getenv("TOKEN", "")
+    PORT = int(getenv("PORT", 8443))
     updater = Updater(token=TOKEN, use_context=True)
     dispatcher = updater.dispatcher
     command_handler(dispatcher)
@@ -21,7 +22,7 @@ def main():
     logger.info("Hello World!")
     updater.start_webhook(
         listen="0.0.0.0",
-        port=8443,
+        port=PORT,
         url_path=TOKEN,
         webhook_url=f"https://telemogus.herokuapp.com/{TOKEN}",
     )
