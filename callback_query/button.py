@@ -9,6 +9,8 @@ def get_rps_winner(rps_data: Any):
     p1 = rps_data["p1"]["choice"]
     p2 = rps_data["p2"]["choice"]
     winner = None
+    if p1 == p2:
+        return
     if p1 == "rock":
         winner = "p1" if p2 == "scissor" else "p2"
     elif p1 == "paper":
@@ -63,12 +65,12 @@ def button(update: Update, context: CallbackContext) -> None:
         context.chat_data.pop(f"{query.message.message_id}", None)
         context.bot.send_message(
             chat_id=update.effective_chat.id,
-            text=f"*Rock Paper Scissor*\n*{rps_data['p1']['name']}*:{rps_data['p1']['choice']}\n*{rps_data['p2']['name']}*:{rps_data['p2']['choice']}\nThe winner is {rps_data[winner]['name']}",
+            text=f"*Rock Paper Scissor*\n*{rps_data['p1']['name']}*:{rps_data['p1']['choice']}\n*{rps_data['p2']['name']}*:{rps_data['p2']['choice']}\n{'The winner is ' if winner else ''}{rps_data[winner]['name'] if winner else 'It is a DRAW'}",
             parse_mode=ParseMode.MARKDOWN_V2,
         )
 
         query.edit_message_text(
-            text=f"The winner is {rps_data[winner]['name']}",
+            text=f"{'The winner is ' if winner else ''}{rps_data[winner]['name'] if winner else 'It is a DRAW'}",
         )
 
 
