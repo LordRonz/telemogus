@@ -65,7 +65,7 @@ def button(update: Update, context: CallbackContext) -> None:
         context.chat_data.pop(f"{query.message.message_id}", None)
         context.bot.send_message(
             chat_id=update.effective_chat.id,
-            text=f"*Rock Paper Scissor*\n*{rps_data['p1']['name']}*:{rps_data['p1']['choice']}\n*{rps_data['p2']['name']}*:{rps_data['p2']['choice']}\n{'The winner is ' if winner else ''}{rps_data[winner]['name'] if winner else 'It is a DRAW'}",
+            text=f"*Rock Paper Scissor*\n\n*{rps_data['p1']['name']}*: {rps_data['p1']['choice']}\n*{rps_data['p2']['name']}*: {rps_data['p2']['choice']}\n\n{'The winner is ' if winner else ''}{rps_data[winner]['name'] if winner else 'It is a DRAW'}",
             parse_mode=ParseMode.MARKDOWN_V2,
         )
 
