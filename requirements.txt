@@ -1,4 +1,4 @@
-APScheduler==3.6.3
+APScheduler==3.9.1
 attrs==21.4.0
 cachetools==4.2.2
 certifi==2021.10.8
