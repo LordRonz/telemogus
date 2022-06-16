@@ -1,7 +1,7 @@
 APScheduler==3.6.3
 attrs==21.4.0
 cachetools==4.2.2
-certifi==2021.10.8
+certifi==2022.6.15
 iniconfig==1.1.1
 packaging==21.3
 pluggy==1.0.0
